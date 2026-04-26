@@ -1,103 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevNova Landing Page</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
 
-        header {
-            background: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
+body {
+    background: #0f172a;
+    color: white;
+}
 
-        nav {
-            background: #555;
-            padding: 10px;
-            text-align: center;
-        }
+/* NAVBAR */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
 
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 50px;
+    align-items: center;
+}
 
-        nav a:hover {
-            color: #ffd700;
-        }
+.logo {
+    color: #38bdf8;
+    font-size: 1.5rem;
+}
 
-        .hero {
-            background: url('https://picsum.photos/1200/500') no-repeat center;
-            background-size: cover;
-            height: 300px;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-        }
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
 
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+nav ul li a:hover {
+    color: #38bdf8;
+}
 
-        .btn:hover {
-            background: #0056b3;
-        }
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: radial-gradient(circle at top, #1e293b, #0f172a);
+}
 
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 20px;
-        }
-    </style>
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 600px;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    background: #38bdf8;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0ea5e9;
+}
+
+/* SECTIONS */
+.section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.section p {
+    max-width: 700px;
+    margin: auto;
+    color: #cbd5e1;
+}
+
+/* SERVICES */
+.services {
+    background: #1e293b;
+}
+
+.grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.card {
+    background: #0f172a;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #38bdf8;
+}
+
+/* CONTACT */
+.contact-box {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-box input,
+.contact-box textarea {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+.contact-box textarea {
+    height: 120px;
+}
+
+.contact-box button {
+    padding: 12px;
+    background: #38bdf8;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+    color: #94a3b8;
+}
+</style>
+
 </head>
+
 <body>
 
+<!-- NAVBAR -->
 <header>
-    <h1>My Website</h1>
-    <p>Welcome to my first site</p>
+<nav>
+    <div class="logo">DevNova</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 </header>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-</nav>
+<!-- HERO -->
+<section id="home" class="hero">
+    <h1>Build Modern Websites</h1>
+    <p>Create beautiful, responsive and professional websites using only HTML and CSS with modern design principles.</p>
+    <a href="#services" class="btn">Get Started</a>
+</section>
 
-<div class="hero">
-    Build Your Dream Website
-</div>
+<!-- ABOUT -->
+<section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+        We build clean, fast and modern websites for startups, students and businesses.
+        Our focus is simplicity, performance and beautiful UI design.
+    </p>
+</section>
 
-<div class="content">
-    <h2>About This Site</h2>
-    <p>This is a simple HTML and CSS website. You can expand it with JavaScript and backend later.</p>
-    <a href="#" class="btn">Learn More</a>
-</div>
+<!-- SERVICES -->
+<section id="services" class="section services">
+    <h2>Our Services</h2>
 
+    <div class="grid">
+        <div class="card">💻 Web Design</div>
+        <div class="card">⚙️ Web Development</div>
+        <div class="card">📱 Mobile Friendly UI</div>
+        <div class="card">🚀 Performance Optimization</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>Send us a message and we will respond quickly.</p>
+
+    <div class="contact-box">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+        <button>Send Message</button>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-    <p>© 2026 My Website | All rights reserved</p>
+    © 2026 DevNova. All rights reserved.
 </footer>
 
 </body>
