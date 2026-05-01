@@ -3,243 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevNova Landing Page</title>
+<title>Reels Viewer</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-    scroll-behavior: smooth;
-}
-
 body {
-    background: #0f172a;
-    color: white;
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial;
 }
 
-/* NAVBAR */
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 18px 50px;
-    align-items: center;
-}
-
-.logo {
-    color: #38bdf8;
-    font-size: 1.5rem;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    color: #38bdf8;
-}
-
-/* HERO */
-.hero {
+.reels-container {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    background: radial-gradient(circle at top, #1e293b, #0f172a);
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+.reel {
+    height: 100vh;
+    position: relative;
+    scroll-snap-align: start;
 }
 
-.hero p {
-    max-width: 600px;
-    color: #cbd5e1;
-    margin-bottom: 20px;
-}
-
-.btn {
-    padding: 12px 25px;
-    background: #38bdf8;
-    color: black;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #0ea5e9;
-}
-
-/* SECTIONS */
-.section {
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-}
-
-.section p {
-    max-width: 700px;
-    margin: auto;
-    color: #cbd5e1;
-}
-
-/* SERVICES */
-.services {
-    background: #1e293b;
-}
-
-.grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 0 40px;
-}
-
-.card {
-    background: #0f172a;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #334155;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    border-color: #38bdf8;
-}
-
-/* CONTACT */
-.contact-box {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contact-box input,
-.contact-box textarea {
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-}
-
-.contact-box textarea {
-    height: 120px;
-}
-
-.contact-box button {
-    padding: 12px;
-    background: #38bdf8;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 8px;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #020617;
-    color: #94a3b8;
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 </style>
 
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<header>
-<nav>
-    <div class="logo">DevNova</div>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
-</header>
+<div class="reels-container" id="reels"></div>
 
-<!-- HERO -->
-<section id="home" class="hero">
-    <h1>Build Modern Websites</h1>
-    <p>Create beautiful, responsive and professional websites using only HTML and CSS with modern design principles.</p>
-    <a href="#services" class="btn">Get Started</a>
-</section>
+<script>
+// "Videos stored in JS"
+const videos = [
+    "vedios/engonga.mp4",
+    "vedios/Booty.mp4",
+    "vedios/cherokee.mp4"
+];
 
-<!-- ABOUT -->
-<section id="about" class="section">
-    <h2>About Us</h2>
-    <p>
-        We build clean, fast and modern websites for startups, students and businesses.
-        Our focus is simplicity, performance and beautiful UI design.
-    </p>
-</section>
+const container = document.getElementById("reels");
 
-<!-- SERVICES -->
-<section id="services" class="section services">
-    <h2>Our Services</h2>
+// Create reels dynamically
+videos.forEach(src => {
+    const reel = document.createElement("div");
+    reel.className = "reel";
 
-    <div class="grid">
-        <div class="card">💻 Web Design</div>
-        <div class="card">⚙️ Web Development</div>
-        <div class="card">📱 Mobile Friendly UI</div>
-        <div class="card">🚀 Performance Optimization</div>
-    </div>
-</section>
+    const video = document.createElement("video");
+    video.src = src;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Send us a message and we will respond quickly.</p>
+    reel.appendChild(video);
+    container.appendChild(reel);
+});
 
-    <div class="contact-box">
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <textarea placeholder="Your Message"></textarea>
-        <button>Send Message</button>
-    </div>
-</section>
+// Auto play visible video
+const reels = document.querySelectorAll("video");
 
-<!-- FOOTER -->
-<footer>
-    © 2026 DevNova. All rights reserved.
-</footer>
+function playVisibleVideo() {
+    reels.forEach(video => video.pause());
+
+    const middle = window.innerHeight / 2;
+
+    reels.forEach(video => {
+        const rect = video.getBoundingClientRect();
+        if (rect.top < middle && rect.bottom > middle) {
+            video.play();
+        }
+    });
+}
+
+// Scroll event
+container.addEventListener("scroll", playVisibleVideo);
+
+// Play first video
+window.onload = playVisibleVideo;
+</script>
 
 </body>
 </html>
